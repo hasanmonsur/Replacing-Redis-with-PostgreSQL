@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>RedisVsPostgresBenchmark.RedisVsPostgresBenchmarks-20250402-100221</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.14.0, Windows 11 (10.0.26100.3624)
+Intel Core i7-8750H CPU 2.20GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
+.NET SDK 9.0.102
+  [Host]     : .NET 9.0.1 (9.0.124.61010), X64 RyuJIT AVX2
+  DefaultJob : .NET 9.0.1 (9.0.124.61010), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method        </th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Redis_Set</td><td>463.5 &mu;s</td><td>16.84 &mu;s</td><td>49.12 &mu;s</td><td>456.9 &mu;s</td><td>193 B</td>
+</tr><tr><td>Redis_Get</td><td>413.0 &mu;s</td><td>15.58 &mu;s</td><td>44.71 &mu;s</td><td>411.4 &mu;s</td><td>201 B</td>
+</tr><tr><td>Postgres_Set</td><td>2,629.9 &mu;s</td><td>161.19 &mu;s</td><td>443.98 &mu;s</td><td>2,447.0 &mu;s</td><td>1280 B</td>
+</tr><tr><td>Postgres_Get</td><td>436.5 &mu;s</td><td>19.29 &mu;s</td><td>56.87 &mu;s</td><td>441.0 &mu;s</td><td>1011 B</td>
+</tr><tr><td>PostgresUnlogged_Set</td><td>450.6 &mu;s</td><td>20.44 &mu;s</td><td>60.28 &mu;s</td><td>449.0 &mu;s</td><td>1290 B</td>
+</tr><tr><td>PostgresUnlogged_Get</td><td>448.9 &mu;s</td><td>15.83 &mu;s</td><td>45.91 &mu;s</td><td>455.7 &mu;s</td><td>1033 B</td>
+</tr></tbody></table>
+</body>
+</html>
