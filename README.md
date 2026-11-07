@@ -59,19 +59,19 @@ sequenceDiagram
     participant PG as PostgreSQL
 
     Dev->>App: Start application
-    App->>Redis: Connect and ping localhost:6379
-    App->>PG: Connect and run SELECT 1 on localhost:5432
-    App->>Runner: Run RedisVsPostgresBenchmarks
-    Runner->>Redis: Setup connection
-    Runner->>PG: Setup connection; ensure both tables exist
-    loop Each benchmark case
-        Runner->>Redis: StringSet / StringGet
-        Redis-->>Runner: Result
-        Runner->>PG: Upsert / SELECT (regular or UNLOGGED table)
-        PG-->>Runner: Result
-        Runner->>Runner: Measure time and allocations
+    App->>Redis: Connect and ping Redis
+    App->>PG: Connect and run health check
+    App->>Runner: Start benchmark suite
+    Runner->>Redis: Set up connection
+    Runner->>PG: Set up connection and tables
+    loop Benchmark cases
+        Runner->>Redis: Run set or get operation
+        Redis-->>Runner: Return result
+        Runner->>PG: Run operation on selected table
+        PG-->>Runner: Return result
+        Runner->>Runner: Record time and allocations
     end
-    Runner-->>App: Benchmark summary and artifacts
+    Runner-->>App: Return summary and reports
     App->>PG: Close application connection
 ```
 
